@@ -24,19 +24,27 @@ namespace Proyecto_Factura
         }
         public override bool Guardar()
         {
-            try
+            if (utilidades.ValidarFormulario(this, errorProvider1) == false)
             {
-                string cmd = string.Format("EXEC ActualizarArticulos '{0}','{1}','{2}'", txtidpro.Text.Trim(), txtdescripcion.Text.Trim(), txtprecio.Text.Trim());
-                utilidades.Ejecutar(cmd);
-                MessageBox.Show("Se ha guradado correctamente!..");
-                return true;
+                try
+                {
+                    string cmd = string.Format("EXEC ActualizarArticulos '{0}','{1}','{2}'", txtidpro.Text.Trim(), txtdescripcion.Text.Trim(), txtprecio.Text.Trim());
+                    utilidades.Ejecutar(cmd);
+                    MessageBox.Show("Se ha guradado correctamente!..");
+                    return true;
 
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("Ha ocurrido un error:" + error.Message);
+                    return false;
+                }
             }
-            catch (Exception error)
+            else
             {
-                MessageBox.Show("Ha ocurrido un error:"+error.Message);
-                return false; 
+                return false;
             }
+           
         }
         public override void Eliminar()
         {
@@ -53,5 +61,9 @@ namespace Proyecto_Factura
             }
         }
 
+        private void Txtidpro_TextChanged(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+        }
     }
 }

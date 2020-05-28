@@ -32,9 +32,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtdescripcion = new System.Windows.Forms.TextBox();
-            this.txtprecio = new System.Windows.Forms.TextBox();
-            this.txtidpro = new System.Windows.Forms.TextBox();
+            this.txtprecio = new MiLibreria.Errortxtbox();
+            this.txtdescripcion = new MiLibreria.Errortxtbox();
+            this.txtidpro = new MiLibreria.Errortxtbox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,12 +61,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtprecio);
+            this.groupBox1.Controls.Add(this.txtdescripcion);
+            this.groupBox1.Controls.Add(this.txtidpro);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtdescripcion);
-            this.groupBox1.Controls.Add(this.txtprecio);
-            this.groupBox1.Controls.Add(this.txtidpro);
             this.groupBox1.Location = new System.Drawing.Point(12, 58);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(307, 213);
@@ -103,26 +104,33 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Descripcion ";
             // 
-            // txtdescripcion
-            // 
-            this.txtdescripcion.Location = new System.Drawing.Point(139, 81);
-            this.txtdescripcion.Name = "txtdescripcion";
-            this.txtdescripcion.Size = new System.Drawing.Size(149, 20);
-            this.txtdescripcion.TabIndex = 17;
-            // 
             // txtprecio
             // 
-            this.txtprecio.Location = new System.Drawing.Point(139, 143);
+            this.txtprecio.Location = new System.Drawing.Point(139, 142);
             this.txtprecio.Name = "txtprecio";
             this.txtprecio.Size = new System.Drawing.Size(149, 20);
-            this.txtprecio.TabIndex = 16;
+            this.txtprecio.SoloNumeros = true;
+            this.txtprecio.TabIndex = 22;
+            this.txtprecio.validar = true;
+            // 
+            // txtdescripcion
+            // 
+            this.txtdescripcion.Location = new System.Drawing.Point(139, 78);
+            this.txtdescripcion.Name = "txtdescripcion";
+            this.txtdescripcion.Size = new System.Drawing.Size(149, 20);
+            this.txtdescripcion.SoloNumeros = false;
+            this.txtdescripcion.TabIndex = 21;
+            this.txtdescripcion.validar = true;
             // 
             // txtidpro
             // 
             this.txtidpro.Location = new System.Drawing.Point(139, 31);
             this.txtidpro.Name = "txtidpro";
             this.txtidpro.Size = new System.Drawing.Size(149, 20);
-            this.txtidpro.TabIndex = 15;
+            this.txtidpro.SoloNumeros = true;
+            this.txtidpro.TabIndex = 16;
+            this.txtidpro.validar = true;
+            this.txtidpro.TextChanged += new System.EventHandler(this.Txtidpro_TextChanged);
             // 
             // MantenimientoProductos
             // 
@@ -138,6 +146,7 @@
             this.Controls.SetChildIndex(this.button3, 0);
             this.Controls.SetChildIndex(this.button4, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -150,8 +159,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtdescripcion;
-        private System.Windows.Forms.TextBox txtprecio;
-        private System.Windows.Forms.TextBox txtidpro;
+        private MiLibreria.Errortxtbox txtprecio;
+        private MiLibreria.Errortxtbox txtdescripcion;
+        private MiLibreria.Errortxtbox txtidpro;
     }
 }

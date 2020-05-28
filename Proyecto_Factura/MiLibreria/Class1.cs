@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace MiLibreria
 {
@@ -24,6 +25,47 @@ namespace MiLibreria
 
             return DS;
         }   
+
+        public static Boolean ValidarFormulario(Control Objeto, ErrorProvider ErrorProvider)
+        {
+            Boolean HayErrores = false;
+
+            foreach(Control item in Objeto.Controls)
+            {
+                if (item is Errortxtbox)
+                {
+                    Errortxtbox Obj = (Errortxtbox)item;
+                    if (Obj.validar == true)
+                    {
+                        if (string.IsNullOrEmpty(Obj.Text.Trim()))
+                        {
+                            ErrorProvider.SetError(Obj, "No puede estar vacio");
+                            HayErrores = true;
+                        }
+                    }
+                    if(Obj.SoloNumeros== true)
+                    {
+                        int contador = 0, letrasEncontradas = 0;
+
+                        foreach(char letra  in Obj.Text.Trim())
+                        {
+                            if (char.IsLetter(Obj.Text.Trim(), contador))
+                            {
+                                letrasEncontradas++;
+                            }
+                            contador++;
+                        }
+
+                        if (letrasEncontradas!=0)
+                        {
+                            HayErrores = true;
+                            ErrorProvider.SetError(Obj, "Este campo solo acepta numeros");
+                        }    
+                    }
+                }
+            }
+            return HayErrores;
+        }
 
     }
 }
