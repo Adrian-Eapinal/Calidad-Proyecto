@@ -117,5 +117,12 @@ namespace Proyecto_Factura
             ManPro.MdiParent = this;
             ManPro.Show();
         }
+
+        private void ProveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MantenimientoProveedor  ManProveedor = new MantenimientoProveedor();
+            ManProveedor.MdiParent = this;
+            ManProveedor.Show();
+        }
     }
 }

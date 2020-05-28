@@ -126,6 +126,9 @@
     <EmbeddedResource Include="MantenimientoCliente.resx">
       <DependentUpon>MantenimientoCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MantenimientoProductos.resx">
+      <DependentUpon>MantenimientoProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MantenimientoProveedor.resx">
       <DependentUpon>MantenimientoProveedor.cs</DependentUpon>
     </EmbeddedResource>

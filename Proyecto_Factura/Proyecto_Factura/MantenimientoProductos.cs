@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MiLibreria;
 
 namespace Proyecto_Factura
 {
@@ -16,5 +17,41 @@ namespace Proyecto_Factura
         {
             InitializeComponent();
         }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        public override bool Guardar()
+        {
+            try
+            {
+                string cmd = string.Format("EXEC ActualizarArticulos '{0}','{1}','{2}'", txtidpro.Text.Trim(), txtdescripcion.Text.Trim(), txtprecio.Text.Trim());
+                utilidades.Ejecutar(cmd);
+                MessageBox.Show("Se ha guradado correctamente!..");
+                return true;
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Ha ocurrido un error:"+error.Message);
+                return false; 
+            }
+        }
+        public override void Eliminar()
+        {
+            try
+            {
+                string cmd = string.Format("EXEC EliminarArticulos '{0}'", txtidpro.Text.Trim());
+                utilidades.Ejecutar(cmd);
+                MessageBox.Show("Se ha eliminado correctamente");
+            }
+            catch (Exception error)
+            {
+
+             MessageBox.Show("Ha ocurrido un error"+error.Message);
+            }
+        }
+
     }
 }
