@@ -124,5 +124,38 @@ namespace Proyecto_Factura
             ManProveedor.MdiParent = this;
             ManProveedor.Show();
         }
+
+        private void ClienteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ConsultarClientes Consultacli = new ConsultarClientes();
+            Consultacli.MdiParent = this;
+            Consultacli.Show();
+        }
+
+        private void ProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultarProductos ConSul = new ConsultarProductos();
+            ConSul.MdiParent = this;
+            ConSul.Show();
+        }
+
+        private void ProveedorToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ConsultaProrveedor ConPro = new ConsultaProrveedor();
+            ConPro.MdiParent = this;
+            ConPro.Show();
+        }
+
+        private void MenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void FacturacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Facturacion fac = new Facturacion();
+            fac.MdiParent = this;
+            fac.Show();
+        }
     }
 }
