@@ -86,12 +86,9 @@ namespace Proyecto_Factura
                     dataGridView1.Rows.Add(txtCodigoPro.Text, txtDesPro.Text, txtPreciopro.Text, txtcantidad.Text);
                     double importe = Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[3].Value);// convercion para calcuar el importe 
                     dataGridView1.Rows[contador_fila].Cells[4].Value = importe;
-
                     contador_fila++;
-                }
-                else
-                {
-                    foreach (DataGridViewRow Fila in dataGridView1.Rows)//se creo una variable de tipo fila 
+                }else{
+                    foreach (DataGridViewRow Fila in dataGridView1.Rows)//se creo una variable de tipo fila para recorrerla
                     {
                         if (Fila.Cells[0].Value.ToString() == txtCodigoPro.Text)
                         {
@@ -105,15 +102,11 @@ namespace Proyecto_Factura
                         double importe = Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value);// convercion para calcuar el importe 
 
                         dataGridView1.Rows[num_fila].Cells[4].Value = importe;
-
-
-                    }
-                    else
+                    }else
                     {
                         dataGridView1.Rows.Add(txtCodigoPro.Text, txtDesPro.Text, txtPreciopro.Text, txtcantidad.Text);
                         double importe = Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[3].Value);// convercion para calcuar el importe 
                         dataGridView1.Rows[contador_fila].Cells[4].Value = importe;
-
                         contador_fila++;
                     }
                 }
@@ -150,20 +143,45 @@ namespace Proyecto_Factura
             if (Concli.DialogResult==DialogResult.OK)
             {
                 txtCodigoCli.Text = Concli.dataGridView1.Rows[Concli.dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-                txtcliente.Text= Concli.dataGridView1.Rows[Concli.dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                txtcliente.Text= Concli.dataGridView1.Rows[Concli.dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
 
                 txtCodigoPro.Focus();
             }
         }
-
         private void BtnProducto_Click(object sender, EventArgs e)
         {
-            //ConsultarProductos Conpro = new ConsultarProductos();
-          //  Conpro.ShowDialog();
-           // if (Conpro.DialogResult == DialogResult.OK)
-           // {
-           //    txtCodigoPro.Text=Conpro.dataGridView1.Rows[con]
-           // }
+            ConsultarProductos Conpro = new ConsultarProductos();
+            Conpro.ShowDialog();
+            if (Conpro.DialogResult == DialogResult.OK)
+            {
+                txtCodigoPro.Text = Conpro.dataGridView1.Rows[Conpro.dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                txtDesPro.Text = Conpro.dataGridView1.Rows[Conpro.dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+                txtPreciopro.Text = Conpro.dataGridView1.Rows[Conpro.dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
+                txtcantidad.Focus();
+
+            }
         }
+
+        private void BtnNuevo_Click(object sender, EventArgs e)
+        {
+            Nuevo();
+        }
+        public override void Nuevo()
+        {
+            txtCodigoCli.Text = "";
+            txtcliente.Text = "";
+            txtCodigoCli.Text = "";
+            txtDesPro.Text = "";
+            txtPreciopro.Text = "";
+            txtcantidad.Text = "";
+            lbltotal.Text = "RD$ 0";
+            dataGridView1.Rows.Clear();
+            contador_fila = 0;
+            total = 0;
+            txtCodigoCli.Focus();
+
+        
+        }
+
     }
 }
