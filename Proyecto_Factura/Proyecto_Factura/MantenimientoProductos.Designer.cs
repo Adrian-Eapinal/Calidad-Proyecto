@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtprecio = new MiLibreria.Errortxtbox();
             this.txtdescripcion = new MiLibreria.Errortxtbox();
             this.txtidpro = new MiLibreria.Errortxtbox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +54,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(344, 200);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // btnSalir
             // 
@@ -73,6 +74,34 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mantenimiento Producto";
+            // 
+            // txtprecio
+            // 
+            this.txtprecio.Location = new System.Drawing.Point(139, 142);
+            this.txtprecio.Name = "txtprecio";
+            this.txtprecio.Size = new System.Drawing.Size(149, 20);
+            this.txtprecio.SoloNumeros = true;
+            this.txtprecio.TabIndex = 22;
+            this.txtprecio.validar = true;
+            // 
+            // txtdescripcion
+            // 
+            this.txtdescripcion.Location = new System.Drawing.Point(139, 78);
+            this.txtdescripcion.Name = "txtdescripcion";
+            this.txtdescripcion.Size = new System.Drawing.Size(149, 20);
+            this.txtdescripcion.SoloNumeros = false;
+            this.txtdescripcion.TabIndex = 21;
+            this.txtdescripcion.validar = true;
+            // 
+            // txtidpro
+            // 
+            this.txtidpro.Location = new System.Drawing.Point(139, 31);
+            this.txtidpro.Name = "txtidpro";
+            this.txtidpro.Size = new System.Drawing.Size(149, 20);
+            this.txtidpro.SoloNumeros = true;
+            this.txtidpro.TabIndex = 16;
+            this.txtidpro.validar = true;
+            this.txtidpro.TextChanged += new System.EventHandler(this.Txtidpro_TextChanged);
             // 
             // label3
             // 
@@ -103,34 +132,6 @@
             this.label1.Size = new System.Drawing.Size(95, 16);
             this.label1.TabIndex = 18;
             this.label1.Text = "Descripcion ";
-            // 
-            // txtprecio
-            // 
-            this.txtprecio.Location = new System.Drawing.Point(139, 142);
-            this.txtprecio.Name = "txtprecio";
-            this.txtprecio.Size = new System.Drawing.Size(149, 20);
-            this.txtprecio.SoloNumeros = true;
-            this.txtprecio.TabIndex = 22;
-            this.txtprecio.validar = true;
-            // 
-            // txtdescripcion
-            // 
-            this.txtdescripcion.Location = new System.Drawing.Point(139, 78);
-            this.txtdescripcion.Name = "txtdescripcion";
-            this.txtdescripcion.Size = new System.Drawing.Size(149, 20);
-            this.txtdescripcion.SoloNumeros = false;
-            this.txtdescripcion.TabIndex = 21;
-            this.txtdescripcion.validar = true;
-            // 
-            // txtidpro
-            // 
-            this.txtidpro.Location = new System.Drawing.Point(139, 31);
-            this.txtidpro.Name = "txtidpro";
-            this.txtidpro.Size = new System.Drawing.Size(149, 20);
-            this.txtidpro.SoloNumeros = true;
-            this.txtidpro.TabIndex = 16;
-            this.txtidpro.validar = true;
-            this.txtidpro.TextChanged += new System.EventHandler(this.Txtidpro_TextChanged);
             // 
             // MantenimientoProductos
             // 

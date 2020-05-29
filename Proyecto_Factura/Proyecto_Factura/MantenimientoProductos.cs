@@ -65,5 +65,12 @@ namespace Proyecto_Factura
         {
             errorProvider1.Clear();
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            txtidpro.Clear();
+            txtdescripcion.Clear();
+            txtprecio.Clear();
+        }
     }
 }

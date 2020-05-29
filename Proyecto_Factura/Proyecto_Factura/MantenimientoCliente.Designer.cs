@@ -35,8 +35,13 @@
             this.txtNomcli = new System.Windows.Forms.TextBox();
             this.txtApecli = new System.Windows.Forms.TextBox();
             this.txtidcli = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // btnSalir
             // 
@@ -123,6 +128,7 @@
             this.Controls.SetChildIndex(this.button3, 0);
             this.Controls.SetChildIndex(this.button4, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

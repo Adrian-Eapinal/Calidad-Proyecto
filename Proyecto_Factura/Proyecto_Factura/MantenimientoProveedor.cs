@@ -52,5 +52,15 @@ namespace Proyecto_Factura
         {
 
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            txtdirprov.Clear();
+            txtapeprov.Clear();
+            txtdirprov.Clear();
+            txttelprov.Clear();
+            txtnomprov.Clear();
+            txtidproveedor.Clear();
+        }
     }
 }
