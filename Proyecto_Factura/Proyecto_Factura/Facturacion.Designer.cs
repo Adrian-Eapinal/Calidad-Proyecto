@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnFacturar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
@@ -43,7 +44,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtimporte = new MiLibreria.Errortxtbox();
+            this.ColCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDEscricpion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColImporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtcantidad = new MiLibreria.Errortxtbox();
             this.txtDesPro = new MiLibreria.Errortxtbox();
             this.txtPreciopro = new MiLibreria.Errortxtbox();
             this.txtCodigoPro = new MiLibreria.Errortxtbox();
@@ -64,13 +70,13 @@
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(750, 459);
+            this.btnSalir.Location = new System.Drawing.Point(759, 486);
             this.btnSalir.Size = new System.Drawing.Size(126, 23);
             // 
             // btnEliminar
             // 
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(750, 214);
+            this.btnEliminar.Location = new System.Drawing.Point(759, 241);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(126, 23);
             this.btnEliminar.TabIndex = 1;
@@ -80,7 +86,7 @@
             // btnFacturar
             // 
             this.btnFacturar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFacturar.Location = new System.Drawing.Point(750, 414);
+            this.btnFacturar.Location = new System.Drawing.Point(759, 441);
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Size = new System.Drawing.Size(126, 23);
             this.btnFacturar.TabIndex = 2;
@@ -90,7 +96,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(750, 366);
+            this.btnNuevo.Location = new System.Drawing.Point(759, 393);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(126, 23);
             this.btnNuevo.TabIndex = 3;
@@ -100,7 +106,7 @@
             // btnProducto
             // 
             this.btnProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProducto.Location = new System.Drawing.Point(750, 317);
+            this.btnProducto.Location = new System.Drawing.Point(759, 344);
             this.btnProducto.Name = "btnProducto";
             this.btnProducto.Size = new System.Drawing.Size(126, 23);
             this.btnProducto.TabIndex = 4;
@@ -110,7 +116,7 @@
             // btnCliente
             // 
             this.btnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCliente.Location = new System.Drawing.Point(750, 263);
+            this.btnCliente.Location = new System.Drawing.Point(759, 290);
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Size = new System.Drawing.Size(126, 23);
             this.btnCliente.TabIndex = 5;
@@ -155,7 +161,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(12, 195);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 28);
+            this.label4.Size = new System.Drawing.Size(99, 28);
             this.label4.TabIndex = 9;
             this.label4.Text = "Codigo";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -179,9 +185,9 @@
             this.label6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(126, 195);
+            this.label6.Location = new System.Drawing.Point(111, 195);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(248, 28);
+            this.label6.Size = new System.Drawing.Size(263, 28);
             this.label6.TabIndex = 11;
             this.label6.Text = "Descripcion ";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -213,20 +219,79 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 195);
+            this.dataGridView1.ColumnHeadersVisible = false;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColCodigo,
+            this.ColDEscricpion,
+            this.ColPrecio,
+            this.ColCantidad,
+            this.ColImporte});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 222);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(716, 287);
             this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
-            // txtimporte
+            // ColCodigo
             // 
-            this.txtimporte.Location = new System.Drawing.Point(494, 169);
-            this.txtimporte.Name = "txtimporte";
-            this.txtimporte.Size = new System.Drawing.Size(100, 20);
-            this.txtimporte.SoloNumeros = false;
-            this.txtimporte.TabIndex = 16;
-            this.txtimporte.validar = true;
+            this.ColCodigo.FillWeight = 93.2741F;
+            this.ColCodigo.HeaderText = "Codigo";
+            this.ColCodigo.Name = "ColCodigo";
+            this.ColCodigo.ReadOnly = true;
+            // 
+            // ColDEscricpion
+            // 
+            this.ColDEscricpion.FillWeight = 126.9035F;
+            this.ColDEscricpion.HeaderText = "Descripcion ";
+            this.ColDEscricpion.Name = "ColDEscricpion";
+            this.ColDEscricpion.ReadOnly = true;
+            // 
+            // ColPrecio
+            // 
+            this.ColPrecio.FillWeight = 93.2741F;
+            this.ColPrecio.HeaderText = "Precio";
+            this.ColPrecio.Name = "ColPrecio";
+            this.ColPrecio.ReadOnly = true;
+            // 
+            // ColCantidad
+            // 
+            this.ColCantidad.FillWeight = 93.2741F;
+            this.ColCantidad.HeaderText = "Cantidad";
+            this.ColCantidad.Name = "ColCantidad";
+            this.ColCantidad.ReadOnly = true;
+            // 
+            // ColImporte
+            // 
+            this.ColImporte.FillWeight = 93.2741F;
+            this.ColImporte.HeaderText = "Importe ";
+            this.ColImporte.Name = "ColImporte";
+            this.ColImporte.ReadOnly = true;
+            // 
+            // txtcantidad
+            // 
+            this.txtcantidad.Location = new System.Drawing.Point(494, 169);
+            this.txtcantidad.Name = "txtcantidad";
+            this.txtcantidad.Size = new System.Drawing.Size(100, 20);
+            this.txtcantidad.SoloNumeros = false;
+            this.txtcantidad.TabIndex = 16;
+            this.txtcantidad.validar = true;
             // 
             // txtDesPro
             // 
@@ -286,7 +351,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(529, 492);
+            this.label9.Location = new System.Drawing.Point(526, 517);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 16);
             this.label9.TabIndex = 23;
@@ -295,7 +360,7 @@
             // lbltotal
             // 
             this.lbltotal.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.lbltotal.Location = new System.Drawing.Point(599, 492);
+            this.lbltotal.Location = new System.Drawing.Point(596, 517);
             this.lbltotal.Name = "lbltotal";
             this.lbltotal.Size = new System.Drawing.Size(132, 23);
             this.lbltotal.TabIndex = 24;
@@ -303,12 +368,13 @@
             // btnColocar
             // 
             this.btnColocar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColocar.Location = new System.Drawing.Point(750, 169);
+            this.btnColocar.Location = new System.Drawing.Point(759, 196);
             this.btnColocar.Name = "btnColocar";
             this.btnColocar.Size = new System.Drawing.Size(126, 23);
             this.btnColocar.TabIndex = 25;
             this.btnColocar.Text = "Colocar";
             this.btnColocar.UseVisualStyleBackColor = true;
+            this.btnColocar.Click += new System.EventHandler(this.BtnColocar_Click);
             // 
             // button7
             // 
@@ -338,7 +404,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(897, 519);
+            this.ClientSize = new System.Drawing.Size(897, 550);
             this.Controls.Add(this.lblLeAtiende);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label4);
@@ -351,7 +417,7 @@
             this.Controls.Add(this.txtCodigoPro);
             this.Controls.Add(this.txtPreciopro);
             this.Controls.Add(this.txtDesPro);
-            this.Controls.Add(this.txtimporte);
+            this.Controls.Add(this.txtcantidad);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -383,7 +449,7 @@
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.txtimporte, 0);
+            this.Controls.SetChildIndex(this.txtcantidad, 0);
             this.Controls.SetChildIndex(this.txtDesPro, 0);
             this.Controls.SetChildIndex(this.txtPreciopro, 0);
             this.Controls.SetChildIndex(this.txtCodigoPro, 0);
@@ -420,7 +486,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private MiLibreria.Errortxtbox txtimporte;
+        private MiLibreria.Errortxtbox txtcantidad;
         private MiLibreria.Errortxtbox txtDesPro;
         private MiLibreria.Errortxtbox txtPreciopro;
         private MiLibreria.Errortxtbox txtCodigoPro;
@@ -433,5 +499,10 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label lblLeAtiende;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColCodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDEscricpion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColPrecio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColImporte;
     }
 }

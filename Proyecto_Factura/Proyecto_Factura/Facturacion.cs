@@ -57,7 +57,7 @@ namespace Proyecto_Factura
 
                     DataSet ds = utilidades.Ejecutar(cmd);
 
-                    txtCodigoCli.Text = ds.Tables[0].Rows[0]["Nom_cli"].ToString().Trim();
+                    txtcliente.Text = ds.Tables[0].Rows[0]["Nom_cli"].ToString().Trim();
                     txtCodigoPro.Focus();
                 }
             }
@@ -65,6 +65,57 @@ namespace Proyecto_Factura
             {
 
                 MessageBox.Show("Ha ocurrido un error: " + error.Message);
+            }
+        }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        public static int contador_fila = 0; 
+        private void BtnColocar_Click(object sender, EventArgs e)
+        {
+            if (utilidades.ValidarFormulario(this,errorProvider1)==false)
+            {
+                bool existe = false;
+                int num_fila = 0;
+                if (contador_fila == 0 )
+                {
+                    dataGridView1.Rows.Add(txtCodigoPro.Text, txtDesPro.Text, txtPreciopro.Text, txtcantidad.Text); 
+                    double importe = Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[3].Value);// convercion para calcuar el importe 
+                    dataGridView1.Rows[contador_fila].Cells[4].Value = importe;
+
+                    contador_fila++;
+                }
+                else
+                {
+                    foreach (DataGridViewRow Fila in dataGridView1.Rows)//se creo una variable de tipo fila 
+                    {
+                        if (Fila.Cells[0].Value.ToString()== txtCodigoPro.Text)
+                        {
+                            existe = true;
+                            num_fila = Fila.Index;// para obtener la posicion de la fila 
+                        }
+                    }
+                    if (existe==true )
+                    {
+                        dataGridView1.Rows[num_fila].Cells[3].Value =(Convert.ToDouble(txtcantidad.Text)+ Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value)).ToString();
+                        double importe = Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value);// convercion para calcuar el importe 
+
+                        dataGridView1.Rows[num_fila].Cells[4].Value = importe;
+
+
+                    }
+                    else
+                    {
+                        dataGridView1.Rows.Add(txtCodigoPro.Text, txtDesPro.Text, txtPreciopro.Text, txtcantidad.Text);
+                        double importe = Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[3].Value);// convercion para calcuar el importe 
+                        dataGridView1.Rows[contador_fila].Cells[4].Value = importe;
+
+                        contador_fila++;
+                    }
+                }
             }
         }
     }
