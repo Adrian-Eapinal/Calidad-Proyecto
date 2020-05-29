@@ -42,7 +42,7 @@ namespace Proyecto_Factura
         {
             string cmd = "Select * from Usuarios where id_usuario= " + VentanaLogin.Codigo;
             DataSet ds;
-           ds = utilidades.Ejecutar(cmd);
+            ds = utilidades.Ejecutar(cmd);
 
             lblLeAtiende.Text = ds.Tables[0].Rows[0]["Nom_usu"].ToString().Trim();
         }
@@ -73,16 +73,17 @@ namespace Proyecto_Factura
 
         }
 
-        public static int contador_fila = 0; 
+        public static int contador_fila = 0;
+        public static double total;
         private void BtnColocar_Click(object sender, EventArgs e)
         {
-            if (utilidades.ValidarFormulario(this,errorProvider1)==false)
+            if (utilidades.ValidarFormulario(this, errorProvider1) == false)
             {
                 bool existe = false;
                 int num_fila = 0;
-                if (contador_fila == 0 )
+                if (contador_fila == 0)
                 {
-                    dataGridView1.Rows.Add(txtCodigoPro.Text, txtDesPro.Text, txtPreciopro.Text, txtcantidad.Text); 
+                    dataGridView1.Rows.Add(txtCodigoPro.Text, txtDesPro.Text, txtPreciopro.Text, txtcantidad.Text);
                     double importe = Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[contador_fila].Cells[3].Value);// convercion para calcuar el importe 
                     dataGridView1.Rows[contador_fila].Cells[4].Value = importe;
 
@@ -92,15 +93,15 @@ namespace Proyecto_Factura
                 {
                     foreach (DataGridViewRow Fila in dataGridView1.Rows)//se creo una variable de tipo fila 
                     {
-                        if (Fila.Cells[0].Value.ToString()== txtCodigoPro.Text)
+                        if (Fila.Cells[0].Value.ToString() == txtCodigoPro.Text)
                         {
                             existe = true;
                             num_fila = Fila.Index;// para obtener la posicion de la fila 
                         }
                     }
-                    if (existe==true )
+                    if (existe == true)
                     {
-                        dataGridView1.Rows[num_fila].Cells[3].Value =(Convert.ToDouble(txtcantidad.Text)+ Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value)).ToString();
+                        dataGridView1.Rows[num_fila].Cells[3].Value = (Convert.ToDouble(txtcantidad.Text) + Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value)).ToString();
                         double importe = Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[2].Value) * Convert.ToDouble(dataGridView1.Rows[num_fila].Cells[3].Value);// convercion para calcuar el importe 
 
                         dataGridView1.Rows[num_fila].Cells[4].Value = importe;
@@ -116,7 +117,53 @@ namespace Proyecto_Factura
                         contador_fila++;
                     }
                 }
+                total = 0;
+                foreach (DataGridViewRow Fila in dataGridView1.Rows)//se creo una variable de tipo fila 
+                {
+                    total += Convert.ToDouble(Fila.Cells[4].Value);
+                }
+                lbltotal.Text = "RD$" + total.ToString();
             }
+        }
+
+        private void Lbltotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (contador_fila>0 )
+            {
+                total = total - (Convert.ToDouble(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value));// para indicar cual fila esta selecionada para restar al total 
+                lbltotal.Text = "RD$" + total.ToString();
+
+                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                contador_fila--;
+            }
+        }
+
+        private void BtnCliente_Click(object sender, EventArgs e)
+        {
+            ConsultarClientes Concli = new ConsultarClientes();
+            Concli.ShowDialog();
+            if (Concli.DialogResult==DialogResult.OK)
+            {
+                txtCodigoCli.Text = Concli.dataGridView1.Rows[Concli.dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                txtcliente.Text= Concli.dataGridView1.Rows[Concli.dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+
+                txtCodigoPro.Focus();
+            }
+        }
+
+        private void BtnProducto_Click(object sender, EventArgs e)
+        {
+            //ConsultarProductos Conpro = new ConsultarProductos();
+          //  Conpro.ShowDialog();
+           // if (Conpro.DialogResult == DialogResult.OK)
+           // {
+           //    txtCodigoPro.Text=Conpro.dataGridView1.Rows[con]
+           // }
         }
     }
 }
