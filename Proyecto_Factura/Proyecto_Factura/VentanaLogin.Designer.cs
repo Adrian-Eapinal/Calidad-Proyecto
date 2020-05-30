@@ -54,7 +54,7 @@
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(75, 23);
             this.btnsalir.TabIndex = 3;
-            this.btnsalir.Text = "Iniciar";
+            this.btnsalir.Text = "Salir";
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.Btnsalir_Click);
             // 
@@ -116,7 +116,7 @@
             this.Controls.Add(this.btniniciar);
             this.Name = "VentanaLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Sistema de Facturacion";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.VentanaLogin_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

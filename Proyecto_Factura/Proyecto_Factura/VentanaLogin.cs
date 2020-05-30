@@ -78,7 +78,7 @@ namespace Proyecto_Factura
 
         private void Btnsalir_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void VentanaLogin_FormClosed(object sender, FormClosedEventArgs e)

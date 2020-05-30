@@ -69,5 +69,10 @@ namespace Proyecto_Factura
             txtApecli.Clear();
             txtNomcli.Clear();
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

@@ -72,5 +72,10 @@ namespace Proyecto_Factura
             txtdescripcion.Clear();
             txtprecio.Clear();
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
