@@ -196,11 +196,11 @@ namespace Proyecto_Factura
                     string Numfac = ds.Tables[0].Rows[0]["NumFac"].ToString().Trim();
                     foreach (DataGridViewRow Fila in dataGridView1.Rows)
                     {
-                        cmd = string.Format("Exec ActualizaDetalles '{0}'.'{1}','{2}'",Numfac,Fila.Cells[0].Value.ToString(),Fila.Cells[2].Value.ToString(),Fila.Cells[3].Value.ToString());
+                        cmd = string.Format("Exec ActualizarDetalles '{0}','{1}','{2}'",Numfac,Fila.Cells[0].Value.ToString(),Fila.Cells[2].Value.ToString(),Fila.Cells[3].Value.ToString());
                         ds = utilidades.Ejecutar(cmd);
                     }
 
-                    cmd = "Exec DatosFacturas " + Numfac;
+                    cmd = "Exec DatosFactura " + Numfac;
 
 
                         ds = utilidades.Ejecutar(cmd);
