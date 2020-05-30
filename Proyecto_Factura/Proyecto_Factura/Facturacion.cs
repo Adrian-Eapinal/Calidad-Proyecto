@@ -183,5 +183,47 @@ namespace Proyecto_Factura
         
         }
 
+        private void BtnFacturar_Click(object sender, EventArgs e)
+        {
+            if (contador_fila != 0)
+            {
+
+
+                try
+                {
+                    string cmd = string.Format("Exec ActualizarFacturas '{0}'", txtCodigoCli.Text.Trim());
+                    DataSet ds = utilidades.Ejecutar(cmd);
+                    string Numfac = ds.Tables[0].Rows[0]["NumFac"].ToString().Trim();
+                    foreach (DataGridViewRow Fila in dataGridView1.Rows)
+                    {
+                        cmd = string.Format("Exec ActualizaDetalles '{0}'.'{1}','{2}'",Numfac,Fila.Cells[0].Value.ToString(),Fila.Cells[2].Value.ToString(),Fila.Cells[3].Value.ToString());
+                        ds = utilidades.Ejecutar(cmd);
+                    }
+
+                    cmd = "Exec DatosFacturas " + Numfac;
+
+
+                        ds = utilidades.Ejecutar(cmd);
+
+
+                    //ventana reporte 
+
+                    Reporte rp = new Reporte();
+                    rp.reportViewer1.LocalReport.DataSources[0].Value = ds.Tables[0];
+                    rp.ShowDialog();
+
+                    Nuevo();
+
+                }
+                catch (Exception error)
+                {
+
+                    MessageBox.Show("Error: " + error.Message);
+                }
+            }
+
+
+
+        }
     }
 }

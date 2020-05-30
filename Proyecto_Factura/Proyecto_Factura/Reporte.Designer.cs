@@ -28,19 +28,67 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+            this.directoryEntry2 = new System.DirectoryServices.DirectoryEntry();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.DataSet1 = new Proyecto_Factura.DataSet1();
+            this.DatosfacturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DatosfacturaTableAdapter = new Proyecto_Factura.DataSet1TableAdapters.DatosfacturaTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DatosfacturaBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.DatosfacturaBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Proyecto_Factura.Informe.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(884, 761);
+            this.reportViewer1.TabIndex = 0;
+            // 
+            // DataSet1
+            // 
+            this.DataSet1.DataSetName = "DataSet1";
+            this.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // DatosfacturaBindingSource
+            // 
+            this.DatosfacturaBindingSource.DataMember = "Datosfactura";
+            this.DatosfacturaBindingSource.DataSource = this.DataSet1;
+            // 
+            // DatosfacturaTableAdapter
+            // 
+            this.DatosfacturaTableAdapter.ClearBeforeFill = true;
             // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 761);
+            this.Controls.Add(this.reportViewer1);
             this.Name = "Reporte";
             this.Text = "Reporte";
+            this.Load += new System.EventHandler(this.Reporte_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DatosfacturaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.DirectoryServices.DirectoryEntry directoryEntry1;
+        private System.DirectoryServices.DirectoryEntry directoryEntry2;
+        private System.Windows.Forms.BindingSource DatosfacturaBindingSource;
+        private DataSet1 DataSet1;
+        private DataSet1TableAdapters.DatosfacturaTableAdapter DatosfacturaTableAdapter;
+        public Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
