@@ -1,0 +1,1 @@
+Midficacion sta es una explicacion de como funciona git 
